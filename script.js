@@ -13,7 +13,7 @@ const bgAnimalsList = [
     {name:"buaya", image:"B.jpg"},
     {name:"tikus", image:"T.png"},
     {name:"unta", image:"unta.avif"},
-    {name:"monyet", image:"J.jpg"}
+    {name:"monyet", image:"M.jpg"}
 ];
 
 const bgContainer = document.getElementById('backgroundAnimals');

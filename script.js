@@ -16,7 +16,6 @@ for(let i=0;i<totalBg;i++){
   bgContainer.appendChild(img);
   moveBg(img);
 }
-
 function moveBg(animal){
   function step(){
     let left=parseFloat(animal.style.left);
@@ -32,17 +31,17 @@ function moveBg(animal){
 }
 
 // === Menu awal bubble petunjuk ===
-document.getElementById('menuClueButton').addEventListener('click',function(e){
-  const bubble=document.getElementById('menuClueBubble');
-  bubble.innerText="💡 Tebak hewan berdasarkan gambar yang muncul! Klik 'Mulai' untuk memulai.";
-  bubble.classList.remove("hidden"); bubble.classList.add("visible");
-  
-  const rect=e.target.getBoundingClientRect();
-  bubble.style.left=rect.left+"px";
-  bubble.style.top=(rect.bottom+10)+"px"; // bubble di bawah tombol
-});
+const menuClueButton=document.getElementById('menuClueButton');
+const menuClueBubble=document.getElementById('menuClueBubble');
 
-document.getElementById('menuClueBubble').addEventListener('click',function(){
+menuClueButton.addEventListener('click', function(){
+  menuClueBubble.innerText="💡 Tebak hewan berdasarkan gambar. Klik 'Mulai' untuk memulai!";
+  menuClueBubble.classList.remove("hidden"); menuClueBubble.classList.add("visible");
+  const rect=menuClueButton.getBoundingClientRect();
+  menuClueBubble.style.left=(rect.left - 20)+"px";
+  menuClueBubble.style.top=(rect.bottom + 10)+"px";
+});
+menuClueBubble.addEventListener('click', function(){
   this.classList.remove("visible"); this.classList.add("hidden");
 });
 
@@ -72,6 +71,82 @@ function mulaiGame(){
   loadLevel();
 }
 
-// (Fungsi loadLevel, countdown, guessButton, resetButton, clueButton, bubble, dll)
-// Bisa sama seperti versi sebelumnya dengan bubble clue game
+function loadLevel(){
+  if(currentLevel>=animals.length){
+    document.getElementById('gameContainer').style.display='none';
+    document.getElementById('gameCompleted').style.display='block';
+    return;
+  }
+  const animal=animals[currentLevel];
+  const animalImg=document.getElementById('animalImage');
+  animalImg.src=animal.image;
+  animalImg.classList.remove("revealed");
+  document.getElementById('guessInput').value="";
+  document.getElementById('result').innerText="";
+  const bubble=document.getElementById('clueBubble');
+  bubble.innerText=""; bubble.classList.add("hidden");
+  updateLevelDisplay();
+  timeLeft=30; updateTimer();
+  clearInterval(timer); timer=setInterval(countdown,1000);
+}
 
+function countdown(){ timeLeft--; updateTimer(); if(timeLeft<=0){ clearInterval(timer); document.getElementById('result').innerText="⏰ Waktu habis!"; nextLevel(); } }
+function updateTimer(){ document.getElementById('timer').innerText="⏳ Waktu: "+timeLeft+" detik"; }
+
+function updateLevelDisplay(){
+  const container=document.getElementById('levelContainer'); container.innerHTML="";
+  for(let i=0;i<animals.length;i++){
+    const circle=document.createElement("div"); circle.classList.add("level-circle");
+    if(i===currentLevel) circle.classList.add("active");
+    circle.innerText=i+1;
+    container.appendChild(circle);
+  }
+}
+
+// Tombol Tebak
+document.getElementById('guessButton').addEventListener('click',function(){
+  const guess=document.getElementById('guessInput').value.trim().toLowerCase();
+  const animal=animals[currentLevel];
+  const correct=animal.name.toLowerCase();
+  const celebration=document.getElementById('animationCelebration');
+
+  if(guess===correct){
+    document.getElementById('result').innerText="🎉 Benar! Itu "+correct.toUpperCase();
+    coins+=5; document.getElementById('coins').innerText=coins;
+    document.getElementById('animalImage').classList.add("revealed");
+
+    // animasi HORE
+    celebration.classList.remove("hidden");
+    setTimeout(()=>{celebration.classList.add("hidden");},1000);
+
+    clearInterval(timer); setTimeout(nextLevel,1500);
+  } else {
+    document.getElementById('result').innerText="❌ Salah, coba lagi!";
+    coins-=1; document.getElementById('coins').innerText=coins;
+  }
+});
+
+// Tombol Lewati
+document.getElementById('resetButton').addEventListener('click',function(){
+  coins-=2; document.getElementById('coins').innerText=coins;
+  nextLevel();
+});
+
+// Tombol Petunjuk di game
+document.getElementById('clueButton').addEventListener('click',function(e){
+  const animal=animals[currentLevel];
+  const bubble=document.getElementById('clueBubble');
+  bubble.innerText="💡 "+animal.clue;
+  bubble.classList.remove("hidden"); bubble.classList.add("visible");
+  coins-=2; document.getElementById('coins').innerText=coins;
+  const rect=e.target.getBoundingClientRect();
+  bubble.style.left=rect.left+"px";
+  bubble.style.top=(rect.top-60)+"px";
+});
+document.getElementById('clueBubble').addEventListener('click',function(){ this.classList.remove("visible"); this.classList.add("hidden"); });
+
+function nextLevel(){ currentLevel++; loadLevel(); }
+function ulangGame(){ currentLevel=0; coins=10; document.getElementById('coins').innerText=coins;
+  document.getElementById('gameCompleted').style.display='none';
+  document.getElementById('menuContainer').style.display='block';
+}

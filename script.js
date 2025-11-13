@@ -132,21 +132,15 @@ document.getElementById('resetButton').addEventListener('click',function(){
   nextLevel();
 });
 
-// Tombol Petunjuk di game
-document.getElementById('clueButton').addEventListener('click',function(e){
-  const animal=animals[currentLevel];
-  const bubble=document.getElementById('clueBubble');
-  bubble.innerText="💡 "+animal.clue;
-  bubble.classList.remove("hidden"); bubble.classList.add("visible");
-  coins-=2; document.getElementById('coins').innerText=coins;
-  const rect=e.target.getBoundingClientRect();
-  bubble.style.left=rect.left+"px";
-  bubble.style.top=(rect.top-60)+"px";
-});
-document.getElementById('clueBubble').addEventListener('click',function(){ this.classList.remove("visible"); this.classList.add("hidden"); });
+// Bubble petunjuk menu
+const menuClueButton = document.getElementById('menuClueButton');
+const menuClueBubble = document.getElementById('menuClueBubble');
 
-function nextLevel(){ currentLevel++; loadLevel(); }
-function ulangGame(){ currentLevel=0; coins=10; document.getElementById('coins').innerText=coins;
-  document.getElementById('gameCompleted').style.display='none';
-  document.getElementById('menuContainer').style.display='block';
-}
+menuClueButton.addEventListener('click', function() {
+  menuClueBubble.innerText = "💡 Tebak hewan berdasarkan gambar! Klik 'Mulai' untuk memulai permainan. Kamu akan mendapatkan koin jika menebak dengan benar, dan bisa menggunakan petunjuk jika kesulitan.";
+  menuClueBubble.classList.add("visible"); // tampilkan bubble
+});
+
+menuClueBubble.addEventListener('click', function() {
+  this.classList.remove("visible"); // sembunyikan saat diklik
+});

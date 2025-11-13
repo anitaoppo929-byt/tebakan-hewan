@@ -3,7 +3,7 @@ const bgAnimalsList = [
   "kucing.png","anjing.png","gajah.png","singa.png",
   "kelinci.png","panda.png","zebra.png","harimau.png",
   "kuda.png","monyet.png","buaya.png","tikus.png",
-  "jerapah.png","unta.png"
+  "jerapah.png","unta.png","monyet.jpg"
 ];
 
 const bgContainer = document.getElementById('backgroundAnimals');

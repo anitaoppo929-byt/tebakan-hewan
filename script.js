@@ -68,7 +68,7 @@ const animals = [
   {name:"buaya", image:"B.jpg", clue:"Hewan amfibi bergigi tajam dan kulit keras."},
   {name:"tikus", image:"T.png", clue:"Hewan kecil yang suka keju dan lari cepat."},
   {name:"unta", image:"unta.avif", clue:"Hewan berpunuk yang kuat di padang pasir."},
-  {name:"monyet", image:"J.jpg", clue:"Hewan cerdas yang suka memanjat dan makan pisang."}
+  {name:"monyet", image:"M.jpg", clue:"Hewan cerdas yang suka memanjat dan makan pisang."}
 ];
 
 let currentLevel = 0;

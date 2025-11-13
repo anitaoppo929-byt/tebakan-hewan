@@ -1,0 +1,79 @@
+/* Background hewan animasi */
+.background-animals {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none; /* supaya tidak mengganggu klik */
+}
+
+.bg-animal {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.5;
+  filter: blur(1px);
+  animation: moveAnimal linear infinite;
+}
+
+/* Animasi bergerak dari kiri ke kanan */
+@keyframes moveAnimal {
+  0% {
+    transform: translateX(-100px) translateY(var(--top, 0px));
+  }
+  100% {
+    transform: translateX(110vw) translateY(var(--top, 0px));
+  }
+}
+
+/* Contoh 10 hewan dengan delay berbeda */
+.background-animals img:nth-child(1) {
+  --top: 50px;
+  animation-duration: 25s;
+  animation-delay: 0s;
+}
+.background-animals img:nth-child(2) {
+  --top: 120px;
+  animation-duration: 30s;
+  animation-delay: 3s;
+}
+.background-animals img:nth-child(3) {
+  --top: 200px;
+  animation-duration: 28s;
+  animation-delay: 5s;
+}
+.background-animals img:nth-child(4) {
+  --top: 300px;
+  animation-duration: 35s;
+  animation-delay: 2s;
+}
+.background-animals img:nth-child(5) {
+  --top: 400px;
+  animation-duration: 32s;
+  animation-delay: 6s;
+}
+.background-animals img:nth-child(6) {
+  --top: 150px;
+  animation-duration: 27s;
+  animation-delay: 1s;
+}
+.background-animals img:nth-child(7) {
+  --top: 250px;
+  animation-duration: 33s;
+  animation-delay: 4s;
+}
+.background-animals img:nth-child(8) {
+  --top: 350px;
+  animation-duration: 29s;
+  animation-delay: 7s;
+}
+.background-animals img:nth-child(9) {
+  --top: 80px;
+  animation-duration: 31s;
+  animation-delay: 0s;
+}
+.background-animals img:nth-child(10) {
+  --top: 220px;
+  animation-duration: 34s;
+  animation-delay: 5s;
+}

@@ -8,13 +8,15 @@
 </head>
 <body>
 
-  <!-- Background animasi -->
-  <div id="backgroundAnimals"></div>
+  <!-- Background animasi kebun binatang -->
+  <div id="backgroundZoo"></div>
 
   <!-- Menu Awal -->
   <div class="menu-container" id="menuContainer">
     <h1>🐾 Tantangan Tebak Hewan 🐾</h1>
     <button class="btn" onclick="mulaiGame()">Mulai Permainan</button>
+    <button class="btn" id="menuClueButton">🔍 Petunjuk</button>
+    <div id="menuClueBubble" class="clue-bubble hidden"></div>
   </div>
 
   <!-- Game -->
@@ -37,7 +39,6 @@
       <button id="clueButton" class="game-btn">🔍 Petunjuk</button>
     </div>
 
-    <!-- Bubble petunjuk -->
     <div id="clueBubble" class="clue-bubble hidden"></div>
 
     <div id="result"></div>

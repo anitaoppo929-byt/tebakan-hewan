@@ -1,3 +1,69 @@
+// === Background animasi kebun binatang full ===
+const bgAnimalsList = [
+  {name:"kucing", image:"k.jpg"},
+    {name:"anjing", image:"A.jpg"},
+    {name:"gajah", image:"G.jpg"},
+    {name:"harimau", image:"H.jpg"},
+    {name:"singa", image:"s.avif"},
+    {name:"kelinci", image:"K.webp"},
+    {name:"jerapah", image:"J.jpg"},
+    {name:"zebra", image:"Z.jpg"},
+    {name:"kuda", image:"D.webp"},
+    {name:"panda", image:"P.jpg"},
+    {name:"buaya", image:"B.jpg"},
+    {name:"tikus", image:"T.png"},
+    {name:"unta", image:"unta.avif"},
+    {name:"monyet", image:"J.jpg"}
+];
+
+const bgContainer = document.getElementById('backgroundAnimals');
+const totalBgAnimals = 40; // banyak hewan
+
+for (let i = 0; i < totalBgAnimals; i++) {
+  const img = document.createElement("img");
+  img.src = bgAnimalsList[Math.floor(Math.random() * bgAnimalsList.length)];
+  img.classList.add("bg-animal");
+
+  // posisi acak awal
+  img.style.left = Math.random() * window.innerWidth + "px";
+  img.style.top = Math.random() * window.innerHeight + "px";
+
+  // speed, scale, blur, opacity random
+  img.speedX = 0.2 + Math.random() * 0.6;
+  img.speedY = 0.1 + Math.random() * 0.4;
+  img.scale = 0.5 + Math.random() * 1.0;
+  img.style.transform = `scale(${img.scale})`;
+  img.style.opacity = 0.3 + Math.random() * 0.5;
+  img.style.filter = `blur(${3 + Math.random()*5}px) brightness(${0.7 + Math.random()*0.3})`;
+
+  bgContainer.appendChild(img);
+  animateBgAnimal(img);
+}
+
+function animateBgAnimal(animal) {
+  function move() {
+    let left = parseFloat(animal.style.left);
+    let top = parseFloat(animal.style.top);
+
+    left += animal.speedX;
+    top += Math.sin(left / 50) * animal.speedY;
+
+    if (left > window.innerWidth + 100) {
+      left = -100;
+      top = Math.random() * window.innerHeight;
+    }
+    if (top < -50) top = 0;
+    if (top > window.innerHeight + 50) top = window.innerHeight;
+
+    animal.style.left = left + "px";
+    animal.style.top = top + "px";
+
+    requestAnimationFrame(move);
+  }
+  move();
+}
+
+// === Game Tebak Hewan ===
 const animals = [
   {name:"kucing", image:"k.jpg", clue:"Hewan berbulu lembut yang suka mengeong."},
   {name:"anjing", image:"A.jpg", clue:"Hewan setia yang suka menggonggong."},

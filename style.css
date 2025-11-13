@@ -77,23 +77,24 @@ body {
 .game-btn { background-color: #7f9e7e; color: white; border: none; padding: 10px 18px; margin: 4px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
 .game-btn:hover { background-color: #5b7553; transform: scale(1.05); }
 
-/* Bubble petunjuk */
-.clue-bubble {
-  position: absolute;
+/* Bubble petunjuk di menu */
+#menuClueBubble {
+  position: relative; /* relative di dalam menu container */
+  display: none;      /* sembunyi dulu */
   background: #fff3b0;
-  padding: 10px 15px;
+  padding: 12px 15px;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   font-style: italic;
-  max-width: 220px;
+  max-width: 280px;
+  margin: 10px auto 0 auto; /* berada di tengah menu container */
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 10;
-  pointer-events: auto;
+  transition: all 0.3s ease;
+  text-align: center;
 }
-.clue-bubble.visible { opacity: 1; }
-.clue-bubble.hidden { opacity: 0; }
+#menuClueBubble.visible {
+  display: block;
+}
 
 /* Animasi selebrasi */
 .celebration {

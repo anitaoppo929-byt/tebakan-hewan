@@ -8,15 +8,29 @@
 </head>
 <body>
 
-  <!-- Background animasi kebun binatang -->
-  <div id="backgroundZoo"></div>
+  <!-- Background animasi -->
+  <div id="backgroundAnimals"></div>
 
   <!-- Menu Awal -->
   <div class="menu-container" id="menuContainer">
     <h1>🐾 Tantangan Tebak Hewan 🐾</h1>
+
+    <!-- Petunjuk / Cara Bermain -->
+    <div class="instructions">
+      <h2>📖 Cara Bermain</h2>
+      <ol>
+        <li>Lihat gambar hewan yang muncul (blur di awal).</li>
+        <li>Tebak nama hewan dengan mengetik di kotak input.</li>
+        <li>Tekan tombol <strong>Tebak</strong> untuk memeriksa jawaban.</li>
+        <li>Jika sulit, gunakan tombol <strong>🔍 Petunjuk</strong> untuk mendapatkan clue (mengurangi koin).</li>
+        <li>Lewati level dengan tombol <strong>Lewati</strong> (mengurangi koin).</li>
+        <li>Setiap jawaban benar menambah koin, salah mengurangi koin.</li>
+        <li>Waktu tiap level 30 detik, habis waktu otomatis lanjut ke level berikutnya.</li>
+        <li>Selesaikan semua level untuk memenangkan permainan!</li>
+      </ol>
+    </div>
+
     <button class="btn" onclick="mulaiGame()">Mulai Permainan</button>
-    <button class="btn" id="menuClueButton">🔍 Petunjuk</button>
-    <div id="menuClueBubble" class="clue-bubble"></div>
   </div>
 
   <!-- Game -->
@@ -39,14 +53,13 @@
       <button id="clueButton" class="game-btn">🔍 Petunjuk</button>
     </div>
 
-    <div id="clueBubble" class="clue-bubble"></div>
+    <div id="clueContainer"></div>
     <div id="result"></div>
-    <div id="animationCelebration" class="celebration hidden">🎉 HORE! 🎉</div>
   </div>
 
   <!-- Game Selesai -->
   <div id="gameCompleted">
-    <h1>🏁 Permainan Selesai! 🏁</h1>
+    <h1>🎉 Selamat! Kamu Menyelesaikan Semua Hewan!</h1>
     <button onclick="ulangGame()">Main Lagi</button>
   </div>
 

@@ -40,8 +40,21 @@ body::before {
     margin: 20px auto;
 }
 
+.animal {
+    width: 60vw;        /* 60% lebar layar */
+    max-width: 500px;   /* maksimal 500px */
+    height: auto;
+    object-fit: contain;
+    filter: blur(10px);  /* blur lebih tebal */
+    transition: filter 0.3s;
+    display: block;
+    margin: 20px auto;
+}
+
 .animal.revealed {
-    filter: blur(0px);
+    filter: blur(0px);  /* hilangkan blur saat reveal */
+}
+
 }
 
 /* Stats, input, tombol */

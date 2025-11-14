@@ -3,7 +3,9 @@ const bgAnimalsList = [
   "kucing.png","anjing.png","gajah.png","singa.png",
   "kelinci.png","panda.png","zebra.png","harimau.png",
   "kuda.png","monyet.png","buaya.png","tikus.png",
-  "jerapah.png","unta.png","monyet.jpg"
+  "jerapah.png","unta.png","monyet.jpg","lumba-lumba.jpg",
+  "pinguin.jpg","kangguru.jpg","kudanil.jpg","rusa.jpg",
+  "merak.jpg"
 ];
 
 const bgContainer = document.getElementById('backgroundAnimals');
@@ -55,20 +57,26 @@ function animateBgAnimal(animal) {
 
 // === Game Tebak Hewan ===
 const animals = [
-  {name:"kucing", image:"k.jpg", clue:"Hewan berbulu lembut yang suka mengeong."},
-  {name:"anjing", image:"A.jpg", clue:"Hewan setia yang suka menggonggong."},
-  {name:"gajah", image:"G.jpg", clue:"Hewan besar dengan belalai panjang."},
-  {name:"harimau", image:"H.jpg", clue:"Hewan bergaris oranye hitam dan buas."},
-  {name:"singa", image:"s.avif", clue:"Raja hutan dengan surai megah."},
-  {name:"kelinci", image:"K.webp", clue:"Hewan kecil dengan telinga panjang yang suka wortel."},
-  {name:"jerapah", image:"J.jpg", clue:"Hewan tinggi dengan leher panjang."},
-  {name:"zebra", image:"Z.jpg", clue:"Hewan belang hitam putih mirip kuda."},
-  {name:"kuda", image:"D.webp", clue:"Hewan kuat yang biasa ditunggangi."},
-  {name:"panda", image:"P.jpg", clue:"Hewan gemuk hitam putih yang suka bambu."},
-  {name:"buaya", image:"B.jpg", clue:"Hewan amfibi bergigi tajam dan kulit keras."},
-  {name:"tikus", image:"T.png", clue:"Hewan kecil yang suka keju dan lari cepat."},
-  {name:"unta", image:"unta.avif", clue:"Hewan berpunuk yang kuat di padang pasir."},
-  {name:"monyet", image:"M.jpg", clue:"Hewan cerdas yang suka memanjat dan makan pisang."}
+  {name:"kucing", clue:"Hewan lucu berbulu lembut, suka mengeong.", img:"K.webp"},
+  {name:"kuda", clue:"Hewan cepat, berkaki empat, sering ditunggangi manusia.", img:"D.webp"},
+  {name:"penguin", clue:"Burung yang tidak bisa terbang tapi pandai berenang.", img:"ping.jpg"},
+  {name:"gajah", clue:"Mamalia terbesar dengan belalai panjang.", img:"G.jpg"},
+  {name:"anjing", clue:"Hewan setia, suka menggonggong dan bermain.", img:"A.jpg"},
+  {name:"harimau", clue:"Bergaris oranye hitam, predator hutan.", img:"H.jpg"},
+  {name:"jerapah", clue:"Lehernya sangat panjang, pemakan daun di pohon tinggi.", img:"J.jpg"},
+  {name:"panda", clue:"Beruang hitam-putih, suka makan bambu.", img:"P.jpg"},
+  {name:"kelinci", clue:"Hewan kecil berbulu, suka melompat dan makan wortel.", img:"k.jpg"},
+  {name:"tikus", clue:"Hewan kecil, suka makan keju dan berlari cepat.", img:"T.png"},
+  {name:"unta", clue:"Hewan gurun dengan punuk untuk menyimpan lemak.", img:"unta.avif"},
+  {name:"buaya", clue:"Reptil besar pemakan daging, tinggal di sungai.", img:"B.jpg"},
+  {name:"singa", clue:"Raja hutan dengan surai besar pada jantan.", img:"s.avif"},
+  {name:"zebra", clue:"Mamalia bergaris hitam-putih, mirip kuda.", img:"Z.jpg"},
+  {name:"monyet", clue:"Hewan gesit, suka memanjat pohon, pintar.", img:"M.jpg"},
+  {name:"lumba-lumba", clue:"Mamalia laut cerdas, suka meloncat di air.", img:"L.jpg"},
+  {name:"kangguru", clue:"Hewan Australia, melompat tinggi dengan kantong di perut.", img:"guru.jpg"},
+  {name:"kudanil", clue:"Hewan besar, hidup di air dan darat, gigi taring besar.", img:"N.jpg"},
+  {name:"merak", clue:"Burung indah berekor panjang dan berwarna cerah.", img:"E.jpg"},
+  {name:"rusa", clue:"Hewan bertanduk, lari cepat, hidup di hutan.", img:"R.jpg"}
 ];
 
 let currentLevel = 0;

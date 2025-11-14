@@ -1,186 +1,69 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tebak Hewan - Kebun Binatang (Animasi)</title>
-  <style>
-    body{
-      margin:0; font-family:Arial; overflow:hidden;
-      background:linear-gradient(#c9ffe9,#eafff7);
-    }
-
-    /* --- Animasi Hewan di Background --- */
-    #backgroundAnimals{
-      position:fixed; inset:0; pointer-events:none; overflow:hidden;
-    }
-    .animal-float{
-      position:absolute; width:120px; opacity:.9;
-      animation:float 12s linear infinite;
-    }
-    @keyframes float{
-      0%{transform:translateY(100vh)}
-      100%{transform:translateY(-200px)}
-    }
-
-    /* --- Menu Tampilan Awal --- */
-    .menu-container{
-      width:100%; max-width:600px; margin:40px auto; text-align:center;
-      background:#ffffffd9; padding:24px; border-radius:14px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.15);
-      animation:fadeIn 1s ease;
-    }
-    @keyframes fadeIn{from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)}}
-
-    .btn{
-      background:#ffb347; border:0; padding:12px 20px;
-      border-radius:10px; font-size:18px; cursor:pointer; margin-top:14px;
-      transition:.3s;
-    }
-    .btn:hover{transform:scale(1.07)}
-
-    /* --- Game Section (tampil setelah mulai) --- */
-    #gameContainer{display:none; padding:20px; text-align:center;}
-
-    /* --- Petunjuk muncul di samping --- */
-    #clueBox{
-      position:fixed; right:-300px; top:50%; transform:translateY(-50%);
-      width:260px; background:white; padding:16px;
-      border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.2);
-      transition:.4s ease;
-    }
-
-    #clueBox.show{right:20px}
-
-    /* --- Game Completed --- */
-    #gameCompleted{display:none; text-align:center; padding:40px;}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tebak Hewan - Kebun Binatang</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Background Hewan Animasi -->
-  <div id="backgroundAnimals"></div>
+  <!-- Background animasi -->
+  <div id="backgroundAnimals"></div>
 
-  <!-- Tampilan Awal -->
-  <div class="menu-container" id="menuContainer">
-    <h1>🐾 Tantangan Tebak Hewan 🐾</h1>
-    <p>Lihat hewannya bergerak di belakang! Tekan mulai untuk menghidupkan animasi khusus!</p>
+  <!-- Menu Awal -->
+  <div class="menu-container" id="menuContainer">
+    <h1>🐾 Tantangan Tebak Hewan 🐾</h1>
 
-    <div class="instructions">
-      <h2>📖 Cara Bermain</h2>
-      <ol>
-        <li>Lihat gambar hewan (awal blur).</li>
-        <li>Tulis tebakan nama hewan.</li>
-        <li>Gunakan Petunjuk bila kesulitan.</li>
-        <li>Koin bertambah saat benar, berkurang saat salah atau skip.</li>
-        <li>Waktu 30 detik tiap level.</li>
-      </ol>
-    </div>
+    <!-- Petunjuk / Cara Bermain -->
+    <div class="instructions">
+      <h2>📖 Cara Bermain</h2>
+      <ol>
+        <li>Lihat gambar hewan yang muncul (blur di awal).</li>
+        <li>Tebak nama hewan dengan mengetik di kotak input.</li>
+        <li>Tekan tombol <strong>Tebak</strong> untuk memeriksa jawaban.</li>
+        <li>Jika sulit, gunakan tombol <strong>🔍 Petunjuk</strong> untuk mendapatkan clue (mengurangi koin).</li>
+        <li>Lewati level dengan tombol <strong>Lewati</strong> (mengurangi koin).</li>
+        <li>Setiap jawaban benar menambah koin, salah mengurangi koin.</li>
+        <li>Waktu tiap level 30 detik, habis waktu otomatis lanjut ke level berikutnya.</li>
+        <li>Selesaikan semua level untuk memenangkan permainan!</li>
+      </ol>
+    </div>
 
-    <button class="btn" onclick="mulaiGame()">Mulai Permainan</button>
-  </div>
+    <button class="btn" onclick="mulaiGame()">Mulai Permainan</button>
+  </div>
 
-  <!-- Game -->
-  <div id="gameContainer">
-    <h2>Level <span id="levelText">1</span></h2>
+  <!-- Game -->
+  <div id="gameContainer">
+    <div id="topBar">
+      <div id="coinDisplay">💰 Koin: <span id="coins">10</span></div>
+      <div id="timer">⏳ Waktu: 30 detik</div>
+    </div>
 
-    <img id="animalImage" src="" style="width:260px; filter:blur(8px); border-radius:12px;">
+    <div id="levelContainer"></div>
 
-    <br><br>
-    <input id="guessInput" placeholder="Tebak nama hewan...">
+    <div class="animal-row">
+      <img id="animalImage" class="animal-img" src="" alt="Hewan">
+    </div>
 
-    <br><br>
-    <button onclick="cekJawaban()">Tebak</button>
-    <button onclick="lewati()">Lewati</button>
-    <button onclick="toggleClue()">🔍 Petunjuk</button>
+    <input type="text" id="guessInput" placeholder="Tebak nama hewan...">
+    <div class="btn-row">
+      <button id="guessButton" class="game-btn">Tebak</button>
+      <button id="resetButton" class="game-btn">Lewati</button>
+      <button id="clueButton" class="game-btn">🔍 Petunjuk</button>
+    </div>
 
-    <div id="result"></div>
-  </div>
+    <div id="clueContainer"></div>
+    <div id="result"></div>
+  </div>
 
-  <!-- Kotak Petunjuk Samping -->
-  <div id="clueBox"></div>
+  <!-- Game Selesai -->
+  <div id="gameCompleted">
+    <h1>🎉 Selamat! Kamu Menyelesaikan Semua Hewan!</h1>
+    <button onclick="ulangGame()">Main Lagi</button>
+  </div>
 
-  <!-- Selesai -->
-  <div id="gameCompleted">
-    <h1>🎉 Kamu Menyelesaikan Semua Level!</h1>
-    <button onclick="location.reload()">Main Lagi</button>
-  </div>
-
-<script>
-  /* --- Hewan untuk background --- */
-  const hewanBG = [
-    "https://i.ibb.co/v1SYcKQ/elephant.png",
-    "https://i.ibb.co/4VkWc28/bird.png",
-    "https://i.ibb.co/5Wk4SYp/monkey.png"
-  ];
-
-  function spawnBG(){
-    const wrap = document.getElementById('backgroundAnimals');
-    for(let i=0;i<7;i++){
-      const img = document.createElement('img');
-      img.src = hewanBG[Math.floor(Math.random()*hewanBG.length)];
-      img.className = 'animal-float';
-      img.style.left = Math.random()*90 + 'vw';
-      img.style.animationDuration = 8 + Math.random()*6 + 's';
-      wrap.appendChild(img);
-    }
-  }
-  spawnBG();
-
-  /* --- Data Level --- */
-  const hewan = [
-    {img:"https://i.ibb.co/v1SYcKQ/elephant.png", nama:"gajah", clue:"Hewan darat besar dengan belalai panjang"},
-    {img:"https://i.ibb.co/4VkWc28/bird.png", nama:"burung", clue:"Hewan yang bisa terbang"},
-    {img:"https://i.ibb.co/5Wk4SYp/monkey.png", nama:"monyet", clue:"Suka memanjat pohon"}
-  ];
-
-  let level = 0;
-
-  function mulaiGame(){
-    document.getElementById('menuContainer').style.display='none';
-    document.getElementById('gameContainer').style.display='block';
-    loadLevel();
-  }
-
-  function loadLevel(){
-    if(level >= hewan.length){
-      document.getElementById('gameContainer').style.display='none';
-      document.getElementById('gameCompleted').style.display='block';
-      return;
-    }
-    document.getElementById('levelText').innerText = level+1;
-    document.getElementById('animalImage').src = hewan[level].img;
-    document.getElementById('animalImage').style.filter='blur(8px)';
-    document.getElementById('guessInput').value="";
-    document.getElementById('result').innerHTML="";
-  }
-
-  function cekJawaban(){
-    const input = document.getElementById('guessInput').value.toLowerCase();
-    if(input === hewan[level].nama){
-      document.getElementById('animalImage').style.filter='blur(0px)';
-      document.getElementById('result').innerHTML = "<b>Benar!</b>";
-      setTimeout(()=>{ level++; loadLevel(); }, 1200);
-    } else {
-      document.getElementById('result').innerHTML = "<span style='color:red'>Salah!</span>";
-    }
-  }
-
-  function lewati(){
-    level++; loadLevel();
-  }
-
-  /* --- Petunjuk Samping --- */
-  function toggleClue(){
-    const box = document.getElementById('clueBox');
-    if(!box.classList.contains('show')){
-      box.innerHTML = <h3>Petunjuk</h3><p>${hewan[level].clue}</p>;
-      box.classList.add('show');
-    } else {
-      box.classList.remove('show');
-    }
-  }
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+nah buatkan kode ini jadi kode tampilan awal menjadi animasi hewan kebun binatang keliatan, serta saat di bawah mulai itu bakal ada animasi hewan menyala. ketika tombol di pencet. dan petunjuk nya di pencet bakal keluar di samping nya serta penjelasan===

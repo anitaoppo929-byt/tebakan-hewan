@@ -21,11 +21,15 @@ body {
   pointer-events: none;
 }
 
-.bg-animal {
-  width: 60px;   /* ubah sesuai keinginan */
-  height: 60px;
-  filter: blur(6px) brightness(0.8);
-  opacity: 0.5;
+.animal-img {
+  width: 300px;   
+  height: 300px;  
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  border: 4px solid #6b705c;
+  filter: blur(15px) brightness(0.8);
+  transition: all 0.4s ease;
 }
 
 /* --- Menu Awal --- */

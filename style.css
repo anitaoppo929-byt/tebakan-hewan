@@ -22,12 +22,10 @@ body {
 }
 
 .bg-animal {
-  position: absolute;
-  width: 60px;
+  width: 60px;   /* ubah sesuai keinginan */
   height: 60px;
   filter: blur(6px) brightness(0.8);
   opacity: 0.5;
-  transition: transform 0.2s linear;
 }
 
 /* --- Menu Awal --- */

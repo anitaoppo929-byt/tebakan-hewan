@@ -95,8 +95,17 @@ body {
   border-radius: 20px;
   padding: 30px;
   text-align: center;
-  width: 360px; /* disesuaikan dengan gambar lebih besar */
+  width: 360px; /* sebelumnya */
+  max-width: 90vw; /* menyesuaikan layar */
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* Jika ingin gambar lebih besar, container harus lebih lebar */
+@media (min-width: 768px) {
+  #gameContainer {
+    width: 400px;
+    padding: 40px;
+  }
 }
 
 #topBar {
@@ -136,8 +145,8 @@ body {
 }
 
 .animal-img {
-  width: 300px;   /* ukuran baru lebih besar */
-  height: 300px;  /* ukuran baru lebih besar */
+  width: 300px;  /* ukuran lebih besar */
+  height: 300px; /* ukuran lebih besar */
   object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);

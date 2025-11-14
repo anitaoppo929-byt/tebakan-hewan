@@ -1,69 +1,54 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tebak Hewan - Kebun Binatang</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Hewan - Kebun Binatang</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Background animasi -->
-  <div id="backgroundAnimals"></div>
+    <!-- MENU UTAMA -->
+    <div id="menuScreen">
+        <h1>Tebak Hewan</h1>
+        <button onclick="startGame()">Mulai Game</button>
+        <button onclick="toggleGuide()">Panduan</button>
 
-  <!-- Menu Awal -->
-  <div class="menu-container" id="menuContainer">
-    <h1>🐾 Tantangan Tebak Hewan 🐾</h1>
+        <div id="guideBox" style="display:none;">
+            <p>Masukkan jawaban sesuai gambar. Gunakan koin dan diamond untuk meminta clue.</p>
+        </div>
+    </div>
 
-    <!-- Petunjuk / Cara Bermain -->
-    <div class="instructions">
-      <h2>📖 Cara Bermain</h2>
-      <ol>
-        <li>Lihat gambar hewan yang muncul (blur di awal).</li>
-        <li>Tebak nama hewan dengan mengetik di kotak input.</li>
-        <li>Tekan tombol <strong>Tebak</strong> untuk memeriksa jawaban.</li>
-        <li>Jika sulit, gunakan tombol <strong>🔍 Petunjuk</strong> untuk mendapatkan clue (mengurangi koin).</li>
-        <li>Lewati level dengan tombol <strong>Lewati</strong> (mengurangi koin).</li>
-        <li>Setiap jawaban benar menambah koin, salah mengurangi koin.</li>
-        <li>Waktu tiap level 30 detik, habis waktu otomatis lanjut ke level berikutnya.</li>
-        <li>Selesaikan semua level untuk memenangkan permainan!</li>
-      </ol>
-    </div>
+    <!-- GAME -->
+    <div id="gameScreen" style="display:none;">
+        <h2>Level: <span id="levelNumber">1</span></h2>
 
-    <button class="btn" onclick="mulaiGame()">Mulai Permainan</button>
-  </div>
+        <img id="animalImg" class="animal" src="" alt="hewan">
 
-  <!-- Game -->
-  <div id="gameContainer">
-    <div id="topBar">
-      <div id="coinDisplay">💰 Koin: <span id="coins">10</span></div>
-      <div id="timer">⏳ Waktu: 30 detik</div>
-    </div>
+        <div class="stats">
+            ❤️ Nyawa: <span id="lives">3</span> |
+            🪙 Koin: <span id="coins">10</span> |
+            💎 Diamond: <span id="diamonds">3</span>
+        </div>
 
-    <div id="levelContainer"></div>
+        <input type="text" id="answerInput" placeholder="Jawaban...">
+        <button onclick="checkAnswer()">Cek</button>
 
-    <div class="animal-row">
-      <img id="animalImage" class="animal-img" src="" alt="Hewan">
-    </div>
+        <div class="shop">
+            <button onclick="buyClueCoin()">💡 Clue (2 koin)</button>
+            <button onclick="buyClueDiamond()">🔍 Reveal (1 diamond)</button>
+        </div>
 
-    <input type="text" id="guessInput" placeholder="Tebak nama hewan...">
-    <div class="btn-row">
-      <button id="guessButton" class="game-btn">Tebak</button>
-      <button id="resetButton" class="game-btn">Lewati</button>
-      <button id="clueButton" class="game-btn">🔍 Petunjuk</button>
-    </div>
+        <p id="clueBox" class="clue"></p>
+        <p id="resultText"></p>
+    </div>
 
-    <div id="clueContainer"></div>
-    <div id="result"></div>
-  </div>
+    <!-- END -->
+    <div id="endScreen" style="display:none;">
+        <h1></h1>
+        <button onclick="restart()">Main Lagi</button>
+    </div>
 
-  <!-- Game Selesai -->
-  <div id="gameCompleted">
-    <h1>🎉 Selamat! Kamu Menyelesaikan Semua Hewan!</h1>
-    <button onclick="ulangGame()">Main Lagi</button>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,5 +1,5 @@
 const animals = [
-  {name:"kucing", clue:"Hewan lucu berbulu lembut, suka mengeong.", img:"K.webp"},
+  {name:"kucing", clue:"Hewan lucu berbulu lembut, suka mengeong.", img:"k.webp"},
   {name:"kuda", clue:"Hewan cepat, berkaki empat, sering ditunggangi manusia.", img:"D.webp"},
   {name:"penguin", clue:"Burung yang tidak bisa terbang tapi pandai berenang.", img:"ping.jpg"},
   {name:"gajah", clue:"Mamalia terbesar dengan belalai panjang.", img:"G.jpg"},
@@ -7,7 +7,7 @@ const animals = [
   {name:"harimau", clue:"Bergaris oranye hitam, predator hutan.", img:"H.jpg"},
   {name:"jerapah", clue:"Lehernya sangat panjang, pemakan daun di pohon tinggi.", img:"J.jpg"},
   {name:"panda", clue:"Beruang hitam-putih, suka makan bambu.", img:"P.jpg"},
-  {name:"kelinci", clue:"Hewan kecil berbulu, suka melompat dan makan wortel.", img:"k.jpg"},
+  {name:"kelinci", clue:"Hewan kecil berbulu, suka melompat dan makan wortel.", img:"K.jpg"},
   {name:"tikus", clue:"Hewan kecil, suka makan keju dan berlari cepat.", img:"T.png"},
   {name:"unta", clue:"Hewan gurun dengan punuk untuk menyimpan lemak.", img:"unta.avif"},
   {name:"buaya", clue:"Reptil besar pemakan daging, tinggal di sungai.", img:"B.jpg"},

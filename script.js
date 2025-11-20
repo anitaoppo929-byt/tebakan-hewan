@@ -8,7 +8,7 @@ const animals = [
   {name:"jerapah", clue:"Lehernya sangat panjang, pemakan daun di pohon tinggi.", img:"J.jpg"},
   {name:"panda", clue:"Beruang hitam-putih, suka makan bambu.", img:"P.jpg"},
   {name:"kelinci", clue:"Hewan kecil berbulu, suka melompat dan makan wortel.", img:"K.jpg"},
-  {name:"hamster", clue:“Hewan kecil berbulu lembut, suka berlari di roda, punya pipi yang bisa menyimpan makanan.”, img:"Ter.png"},
+  {name:"hamster", clue:"Hewan kecil berbulu lembut, suka berlari di roda, punya pipi yang bisa menyimpan makanan.", img:"Ter.png"},
   {name:"unta", clue:"Hewan gurun dengan punuk untuk menyimpan lemak.", img:"unta.avif"},
   {name:"buaya", clue:"Reptil besar pemakan daging, tinggal di sungai.", img:"B.jpg"},
   {name:"singa", clue:"Raja hutan dengan surai besar pada jantan.", img:"s.avif"},
